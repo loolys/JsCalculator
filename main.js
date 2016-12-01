@@ -41,7 +41,39 @@ var getReset, setReset, getInit, setInit;
     setInit = function(bool){
         init = bool;
     }
-})
+}());
+
+function highlight(attribute){
+    if (attribute == "+"){
+        $("#add").addClass("btn-warning");
+        $("#subtract").removeClass("btn-warning");
+        $("#multiply").removeClass("btn-warning");
+        $("#divide").removeClass("btn-warning");
+    }
+    else if (attribute == "-"){
+        $("#subtract").addClass("btn-warning");
+        $("#add").removeClass("btn-warning");
+        $("#multiply").removeClass("btn-warning");
+        $("#divide").removeClass("btn-warning");
+    }
+    else if (attribute == "/"){
+        $("#divide").addClass("btn-warning");
+        $("#add").removeClass("btn-warning");
+        $("#multiply").removeClass("btn-warning");
+        $("#subtract").removeClass("btn-warning");
+    }
+    else if (attribute == "*"){
+        $("#multiply").addClass("btn-warning");
+        $("#add").removeClass("btn-warning");
+        $("#subtract").removeClass("btn-warning");
+        $("#divide").removeClass("btn-warning");
+    } else{
+        $("#multiply").removeClass("btn-warning");
+        $("#add").removeClass("btn-warning");
+        $("#subtract").removeClass("btn-warning");
+        $("#divide").removeClass("btn-warning");
+    }
+}
 
 (function(){
 
@@ -91,8 +123,21 @@ function calc(newNum){
 
 $(document).ready(function(){
 
+    $("#soft-reset").click(function(){
+        highlight("");
+        $("#currentVal").text("");
+    });
+
+    $("#reset").click(function(){
+        highlight("");
+        $("#currentVal").text("");
+        setNumber(0);
+        setInit(true);
+    });
+
     $("#add").click(function(){
         setAttr("+");
+        highlight("+");
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
@@ -100,13 +145,14 @@ $(document).ready(function(){
             setReset(true);
             setInit(false);
         } else{
-            calc(number);
+            //calc(number);
             setReset(true);
         }
     });
 
     $("#subtract").click(function(){
         setAttr("-");
+        highlight("-");
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
@@ -114,13 +160,14 @@ $(document).ready(function(){
             setReset(true);
             setInit(false);
         } else{
-            calc(number);
+            //calc(number);
             setReset(true);
         }
     });
 
     $("#divide").click(function(){
         setAttr("/");
+        highlight("/");
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
@@ -128,12 +175,13 @@ $(document).ready(function(){
             setReset(true);
             setInit(false);
         } else{
-            calc(number);
+            //calc(number);
             setReset(true);
         }
     });
 
     $("#multiply").click(function(){
+        highlight("*");
         setAttr("*");
         var number = parseInt($("#currentVal").text());
         if(getInit()){
@@ -142,12 +190,13 @@ $(document).ready(function(){
             setReset(true);
             setInit(false);
         } else{
-            calc(number);
+            //calc(number);
             setReset(true);
         }
 
     });
     $("#equal").click(function(){
+        highlight("");
         var number = $("#currentVal").text();
         calc(parseInt(number));
         //setNumber(0);

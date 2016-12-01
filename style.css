@@ -6,3 +6,9 @@
 button{
     width: 100%;
 }
+
+#currentVal{
+    height:50px;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size : 18px;
+}
