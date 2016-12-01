@@ -66,5 +66,22 @@ function calc(newNum){
         number /= getNumber();
     }
     setNumber(number);
+    $("#result").val(number);
     return number;
 }
+
+$(document).ready(function(){
+
+    $("#numberButton").click(function(){
+        var number = $("#numberInput").val();
+        setNumber(parseInt(number));
+    });
+
+    $("#attrButton").click(function(){
+        var attr = $("#attrInput").val();
+        setAttr(attr);
+        var number = $("#numberInput").val();
+        calc(parseInt(number));
+    });
+
+});
