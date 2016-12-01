@@ -78,29 +78,51 @@ function calc(newNum){
     }
     setNumber(number);
     console.log("In calc:" + number);
+    setReset(true);
     $("#currentVal").text(number);
     return number;
 }
 
 $(document).ready(function(){
 
-    $("#numberButton").click(function(){
-        var number = $("#numberInput").val();
-        setNumber(parseInt(number));
-    });
-
-    $("#attrButton").click(function(){
-        var attr = $("#attrInput").val();
-        setAttr(attr);
-        var number = $("#numberInput").val();
-        calc(parseInt(number));
-    });
-
     $("#add").click(function(){
         setAttr("+");
         var number = $("#currentVal").text();
         console.log(number);
         calc(parseInt(number));
+    });
+
+    $("#subtract").click(function(){
+        setAttr("-");
+        var number = $("#currentVal").text();
+        setNumber(parseInt(number));
+        console.log(number);
+        setReset(true);
+    });
+
+    $("#divide").click(function(){
+        setAttr("/");
+        var number = $("#currentVal").text();
+        setNumber(parseInt(number));
+        console.log(number);
+        setReset(true);
+    });
+
+    $("#multiply").click(function(){
+        setAttr("*");
+        var number = $("#currentVal").text();
+        setNumber(parseInt(number));
+        console.log(number);
+        setReset(true);
+        /*
+        var number = $("#currentVal").text();
+
+        calc(parseInt(number));*/
+    });
+    $("#equal").click(function(){
+        var number = $("#currentVal").text();
+        calc(parseInt(number));
+        setNumber(0);
     })
 
     $("#1").click(function(){
