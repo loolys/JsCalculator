@@ -4,7 +4,7 @@
 
 var getNumber, setNumber;
 var getAttr, setAttr;
-var getReset, setReset;
+var getReset, setReset, getInit, setInit;
 (function(){
     /*
     Initializes the getter and setter for
@@ -28,13 +28,19 @@ var getReset, setReset;
 (function(){
 
     var reset = true;
-
+    var init = true;
     getReset = function(){
         return reset;
     };
     setReset = function(bool){
         reset = bool;
     };
+    getInit = function(){
+        return init;
+    };
+    setInit = function(bool){
+        init = bool;
+    }
 })
 
 (function(){
@@ -87,42 +93,64 @@ $(document).ready(function(){
 
     $("#add").click(function(){
         setAttr("+");
-        var number = $("#currentVal").text();
-        console.log(number);
-        calc(parseInt(number));
+        var number = parseInt($("#currentVal").text());
+        if(getInit()){
+            setNumber(number);
+            console.log(number);
+            setReset(true);
+            setInit(false);
+        } else{
+            calc(number);
+            setReset(true);
+        }
     });
 
     $("#subtract").click(function(){
         setAttr("-");
-        var number = $("#currentVal").text();
-        setNumber(parseInt(number));
-        console.log(number);
-        setReset(true);
+        var number = parseInt($("#currentVal").text());
+        if(getInit()){
+            setNumber(number);
+            console.log(number);
+            setReset(true);
+            setInit(false);
+        } else{
+            calc(number);
+            setReset(true);
+        }
     });
 
     $("#divide").click(function(){
         setAttr("/");
-        var number = $("#currentVal").text();
-        setNumber(parseInt(number));
-        console.log(number);
-        setReset(true);
+        var number = parseInt($("#currentVal").text());
+        if(getInit()){
+            setNumber(number);
+            console.log(number);
+            setReset(true);
+            setInit(false);
+        } else{
+            calc(number);
+            setReset(true);
+        }
     });
 
     $("#multiply").click(function(){
         setAttr("*");
-        var number = $("#currentVal").text();
-        setNumber(parseInt(number));
-        console.log(number);
-        setReset(true);
-        /*
-        var number = $("#currentVal").text();
+        var number = parseInt($("#currentVal").text());
+        if(getInit()){
+            setNumber(number);
+            console.log(number);
+            setReset(true);
+            setInit(false);
+        } else{
+            calc(number);
+            setReset(true);
+        }
 
-        calc(parseInt(number));*/
     });
     $("#equal").click(function(){
         var number = $("#currentVal").text();
         calc(parseInt(number));
-        setNumber(0);
+        //setNumber(0);
     })
 
     $("#1").click(function(){
