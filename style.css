@@ -1,14 +1,21 @@
 .calc{
-    max-width: 640px;
+    max-width: 400px;
+    width: 400px;
     outline: 1px solid black;
-    padding: 5px;
+    #padding: 5px;
 }
 button{
     width: 100%;
+    margin: 2px;
 }
 
 #currentVal{
     height:50px;
     font-family: "Lucida Console", Monaco, monospace;
     font-size : 18px;
+}
+
+#innerbox input{
+    width: 150px;
+    max-width: 150px;
 }

@@ -5,49 +5,48 @@
 var getNumber, setNumber;
 var getAttr, setAttr;
 var getReset, setReset, getInit, setInit;
-(function(){
+(function () {
     /*
     Initializes the getter and setter for
     number when the code is first ran.
      */
+    "use strict";
     var number = 0;
 
-    getNumber = function(){
+    getNumber = function () {
         return number;
     };
 
-    setNumber = function(num){
-        if (typeof num === "number"){
+    setNumber = function (num) {
+        if (typeof num === "number") {
             number = num;
-        } else{
-            console.log("Not a valid number");
         }
     };
 }());
 
-(function(){
-
-    var reset = true;
-    var init = true;
-    getReset = function(){
+(function () {
+    "use strict";
+    var reset, init;
+    reset = init = true;
+    getReset = function () {
         return reset;
     };
-    setReset = function(bool){
+    setReset = function (bool) {
         reset = bool;
     };
-    getInit = function(){
+    getInit = function () {
         return init;
     };
-    setInit = function(bool){
+    setInit = function (bool) {
         init = bool;
-    }
+    };
 }());
 
-function highlight(attribute){
+function highlight(attribute) {
     /*
     Just adds highlighting to the current attribute selected
     */
-    if (attribute == "+"){
+    if (attribute === "+") {
         $("#add").addClass("btn-warning");
         $("#subtract").removeClass("btn-warning");
         $("#multiply").removeClass("btn-warning");
