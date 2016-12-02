@@ -44,6 +44,9 @@ var getReset, setReset, getInit, setInit;
 }());
 
 function highlight(attribute){
+    /*
+    Just adds highlighting to the current attribute selected
+    */
     if (attribute == "+"){
         $("#add").addClass("btn-warning");
         $("#subtract").removeClass("btn-warning");
@@ -103,6 +106,11 @@ function highlight(attribute){
 }());
 
 function calc(newNum){
+    /*
+    Saves the current number  in var number and
+    then sets the new numbers and perform calculation
+    depending on attribute.
+     */
     var number = getNumber();
     setNumber(newNum);
     var currentAttr = getAttr();
@@ -115,15 +123,10 @@ function calc(newNum){
         number *= getNumber();
     } else if(currentAttr == "/"){
         number /= getNumber();
-    } else{
-        number = parseInt($("#currentVal").text());
-        setNumber(number);
     }
     setNumber(number);
-    console.log("In calc:" + number);
     setReset(true);
     $("#currentVal").text(number);
-    setAttr("reset");
     return number;
 }
 
@@ -147,11 +150,9 @@ $(document).ready(function(){
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
-            console.log(number);
             setReset(true);
             setInit(false);
         } else{
-            //calc(number);
             setReset(true);
         }
     });
@@ -162,11 +163,9 @@ $(document).ready(function(){
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
-            console.log(number);
             setReset(true);
             setInit(false);
         } else{
-            //calc(number);
             setReset(true);
         }
     });
@@ -177,11 +176,9 @@ $(document).ready(function(){
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
-            console.log(number);
             setReset(true);
             setInit(false);
         } else{
-            //calc(number);
             setReset(true);
         }
     });
@@ -192,11 +189,9 @@ $(document).ready(function(){
         var number = parseInt($("#currentVal").text());
         if(getInit()){
             setNumber(number);
-            console.log(number);
             setReset(true);
             setInit(false);
         } else{
-            //calc(number);
             setReset(true);
         }
 
@@ -205,28 +200,20 @@ $(document).ready(function(){
         highlight("");
         var number = $("#currentVal").text();
         calc(parseInt(number));
-        setAttr("reset");
+        setAttr("reset"); // Done because if no attr selected before pressing number I want reset
 
-
-        //setNumber(0);
     })
 
     $("#1").click(function(){
-        console.log(getAttr());
         initial();
         changeText(1);
-
-
     });
     $("#2").click(function(){
-        console.log(getAttr());
         initial();
         changeText(2);
 
     });
     $("#3").click(function(){
-        var at = getAttr();
-        console.log(at);
         initial();
         changeText(3);
 
@@ -273,6 +260,7 @@ function changeText(i){
     }
 }
 function initial(){
+    // resets the calculator if no attribute was selected after pressing equal button.
     if(getAttr() == "reset"){
         setInit(true);
         setNumber(0);
