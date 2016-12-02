@@ -95,6 +95,8 @@ function highlight(attribute){
         }
         else if(at == "/"){
             attr = "/";
+        } else{
+            attr = "reset";
         }
     };
 
@@ -113,11 +115,15 @@ function calc(newNum){
         number *= getNumber();
     } else if(currentAttr == "/"){
         number /= getNumber();
+    } else{
+        number = parseInt($("#currentVal").text());
+        setNumber(number);
     }
     setNumber(number);
     console.log("In calc:" + number);
     setReset(true);
     $("#currentVal").text(number);
+    setAttr("reset");
     return number;
 }
 
@@ -199,39 +205,60 @@ $(document).ready(function(){
         highlight("");
         var number = $("#currentVal").text();
         calc(parseInt(number));
+        setAttr("reset");
+
+
         //setNumber(0);
     })
 
     $("#1").click(function(){
+        console.log(getAttr());
+        initial();
         changeText(1);
+
 
     });
     $("#2").click(function(){
+        console.log(getAttr());
+        initial();
         changeText(2);
+
     });
     $("#3").click(function(){
+        var at = getAttr();
+        console.log(at);
+        initial();
         changeText(3);
+
     });
     $("#4").click(function(){
         changeText(4);
+        initial();
     });
     $("#5").click(function(){
         changeText(5);
+        initial();
     });
     $("#6").click(function(){
         changeText(6);
+        initial();
     });
     $("#7").click(function(){
         changeText(7);
+        initial();
+
     });
     $("#8").click(function(){
         changeText(8);
+        initial();
     });
     $("#9").click(function(){
         changeText(9);
+        initial();
     });
     $("#0").click(function(){
-        $("#currentVal").append("0");
+        changeText(0);
+        initial();
     });
 
 });
@@ -243,5 +270,11 @@ function changeText(i){
     }
     else{
         $("#currentVal").append(""+i);
+    }
+}
+function initial(){
+    if(getAttr() == "reset"){
+        setInit(true);
+        setNumber(0);
     }
 }
